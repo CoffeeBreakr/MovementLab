@@ -5,7 +5,7 @@ class Acceleration extends Phaser.Scene {
 
     create() {
         // variables and settings
-        this.DRAG = 200;    // DRAG < ACCELERATION = icy slide
+        this.DRAG = 1000;    // DRAG < ACCELERATION = icy slide
         this.physics.world.gravity.y = 1000;
 
         // set bg color
@@ -62,7 +62,7 @@ class Acceleration extends Phaser.Scene {
         // check keyboard input
         if(cursors.left.isDown) {
             // set alien acceleration here
-
+            this.alien.setVelocityX(-400);
 
             // Animation and key shading
             // see: https://photonstorm.github.io/phaser3-docs/Phaser.GameObjects.Components.Animation.html#play__anchor
@@ -72,7 +72,7 @@ class Acceleration extends Phaser.Scene {
             this.leftKey.tint = 0xFACADE;   // tint key
         } else if(cursors.right.isDown) {
             // set alien acceleration here
-
+            this.alien.setVelocityX(400);
 
             // Animation and key shading
             this.alien.resetFlip();

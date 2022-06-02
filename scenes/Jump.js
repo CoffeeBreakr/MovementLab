@@ -9,7 +9,7 @@ class Jump extends Phaser.Scene {
         this.MAX_X_VEL = 500;   // pixels/second
         this.MAX_Y_VEL = 5000;
         this.DRAG = 600;    // DRAG < ACCELERATION = icy slide
-        this.physics.world.gravity.y = 10000;
+        this.physics.world.gravity.y = 490;
 
         // set bg color
         this.cameras.main.setBackgroundColor('#227B96');
@@ -46,6 +46,12 @@ class Jump extends Phaser.Scene {
         }
         for(let i = tileSize*2; i < game.config.width-tileSize*13; i += tileSize) {
             let groundTile = this.physics.add.sprite(i, game.config.height - tileSize*9, 'platformer_atlas', 'block').setScale(SCALE).setOrigin(0);
+            groundTile.body.immovable = true;
+            groundTile.body.allowGravity = false;
+            this.ground.add(groundTile);
+        }
+        for(let i = 0; i < game.config.width-tileSize*21; i += tileSize) {
+            let groundTile = this.physics.add.sprite(i, game.config.height - tileSize*2, 'platformer_atlas', 'block').setScale(SCALE).setOrigin(0);
             groundTile.body.immovable = true;
             groundTile.body.allowGravity = false;
             this.ground.add(groundTile);
@@ -107,7 +113,7 @@ class Jump extends Phaser.Scene {
         // note: there is unfortunately no .justDown property in Phaser's cursor object
         if(this.alien.body.touching.down && Phaser.Input.Keyboard.JustDown(cursors.up)) {
             // set jump velocity here
-            this.alien.setVelocityY(-2000);
+            this.alien.setVelocityY(-350);
 
             this.upKey.tint = 0xFACADE;
         } else {

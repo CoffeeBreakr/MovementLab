@@ -60,10 +60,12 @@ class Velocity extends Phaser.Scene {
     update() {
         // check keyboard input
         if(cursors.left.isDown) {
-            // set alien velocity here (.setVelocityX())
-            // A negative value moves left
-            this.alien.setVelocityX(-50);
-
+            if((cursors.left.isDown && cursors.right.isDown) ||(cursors.right.isDown && cursors.left.isDown)) {
+                //makes the alien stop if both arrow keys are simultaneously held
+                this.alien.setVelocityX(0); 
+                } else {
+                this.alien.setVelocityX(-250);
+                }
             // Animation and arrow key tinting
             // see: https://photonstorm.github.io/phaser3-docs/Phaser.GameObjects.Components.Animation.html#play__anchor
             // play(key [, ignoreIfPlaying] [, startFrame])
@@ -74,15 +76,19 @@ class Velocity extends Phaser.Scene {
         } else if(cursors.right.isDown) {
             // Set alien velocity here (.setVelocityX())
             // A positive value moves right
-            this.alien.setVelocityX(50);
-
+            if((cursors.left.isDown && cursors.right.isDown) ||(cursors.right.isDown && cursors.left.isDown)) {
+            //makes the alien stop if both arrow keys are simultaneously held
+            this.alien.setVelocityX(0); 
+            } else {
+            this.alien.setVelocityX(250);
+            }
 
             // Animation and arrow key tinting
             this.alien.resetFlip();
             this.alien.anims.play('walk', true);
             this.rightKey.tint = 0xFACADE;  // tint key
 
-        } else {
+        }else {
             // Set alien velocity to zero here (.setVelocityX())
             this.alien.setVelocityX(0);
 

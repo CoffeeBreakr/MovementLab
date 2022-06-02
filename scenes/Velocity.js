@@ -62,7 +62,7 @@ class Velocity extends Phaser.Scene {
         if(cursors.left.isDown) {
             // set alien velocity here (.setVelocityX())
             // A negative value moves left
-
+            this.alien.setVelocityX(-50);
 
             // Animation and arrow key tinting
             // see: https://photonstorm.github.io/phaser3-docs/Phaser.GameObjects.Components.Animation.html#play__anchor
@@ -74,6 +74,7 @@ class Velocity extends Phaser.Scene {
         } else if(cursors.right.isDown) {
             // Set alien velocity here (.setVelocityX())
             // A positive value moves right
+            this.alien.setVelocityX(50);
 
 
             // Animation and arrow key tinting
@@ -83,7 +84,7 @@ class Velocity extends Phaser.Scene {
 
         } else {
             // Set alien velocity to zero here (.setVelocityX())
-
+            this.alien.setVelocityX(0);
 
             // Animation and arrow key tinting
             this.alien.anims.play('idle');
